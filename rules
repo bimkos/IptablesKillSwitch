@@ -1,7 +1,10 @@
-iptables -P OUTPUT DROP
-iptables -P INPUT DROP
-iptables -A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
-iptables -A INPUT -i lo -j ACCEPT
-iptables -A OUTPUT -p udp -m udp --dport 1194 -j ACCEPT
-iptables -A OUTPUT -o tun0 -j ACCEPT
-iptables -A OUTPUT -o lo -j ACCEPT
+*filter
+:INPUT DROP [242:20832]
+:FORWARD DROP [0:0]
+:OUTPUT DROP [399:59364]
+-A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+-A INPUT -i lo -j ACCEPT
+-A OUTPUT -p udp -m udp --dport 1194 -j ACCEPT
+-A OUTPUT -o tun0 -j ACCEPT
+-A OUTPUT -o lo -j ACCEPT
+COMMIT
